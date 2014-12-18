@@ -45,6 +45,37 @@ sensor_args = { 'dht11': Adafruit_DHT.DHT11,
         		'dht22': Adafruit_DHT.DHT22,
 				'dht2302': Adafruit_DHT.AM2302 }
 
+# <editor-fold desc="Sensor Objects">
+class SensorDht(object):
+    def __init__(self, sensorId = None, activated = None, type=None, boxGpio=None, checkIntervale=None, logIntervale=None):
+        self.sensorId = sensorId
+        self.activated = activated
+        self.type = type
+        self.boxGpio = boxGpio
+        self.checkIntervale = checkIntervale
+        self.logIntervale = logIntervale
+        self.Temperature = 0
+        self.humidity = 0
+        self.lastCheck = 0
+        self.lastLog = 0
+
+class SensorDs18b20(object):
+    def __init__(self, sensorId = None, activated = None, type=None):
+        self.sensorId = sensorId
+        self.activated = activated
+        self.type = type
+
+class SensorMall(object):
+    def __init__(self, sensorId = None, activated = None, type=None):
+        self.sensorId = sensorId
+        self.activated = activated
+        self.type = type
+# </editor-fold>
+
+
+
+
+
 
 
 class settings:
