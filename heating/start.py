@@ -36,12 +36,28 @@ from cgitb import text
 from __builtin__ import str, int
 from warnings import catch_warnings
 from _ast import Str
+import lib.settings as libSettings
+import lib.sensor as sensorTypes
 
-from .lib.settings import settings # as ClassSettings
-from .lib.sensors import * # SensorDht as ClassSensorDht, SensorDs18b20 as ClassSensorDs18b20, SensorUltrasonicHcSr04 as ClassSensorHcSr04
 
+settings = libSettings.settings()
+
+
+
+print "hej"
+
+# region Test information
+#print ("burning: " + str(settings.BoilerBurningConfiguration))
+import lib.test1 as bbb
+
+print "thread init"
+thTest = bbb.testThread(1,"test",1,settings)
+thTest.start()
+settings.threads.append(thTest)
+#endregion
 
 # region Args
+
 #   args init relays GRIO
 relayGPIO_args = { 1: 12,
         		2: 16,
@@ -52,11 +68,15 @@ relayGPIO_args = { 1: 12,
 sensor_args = { 'dht11': Adafruit_DHT.DHT11,
         		'dht22': Adafruit_DHT.DHT22,
 				'dht2302': Adafruit_DHT.AM2302 }
+
+
 # endregion
 
 
+
+
 #settings = ClassSettings()
-settings.screenEnable = False
+#settings.screenEnable = False
 
 
 
@@ -65,7 +85,7 @@ print "starting"
 
 def shutDown():
     print "Application will now shutdown"
-    print "Stop all runnings threads"
+    print "Stop all running threads"
     for t in settings.threads:
         print(str(t.getName()) + ' will now stop()')
         t.stop()
@@ -89,8 +109,15 @@ signal.signal(signal.SIGINT, signal_handler)
 
 while(True):
     print "Data in main tread"
+
     print str(settings.screenEnable)
+    for sensor in settings.sensors:
+        print ("id: " + str(sensor.sensorId))
+        print ("type: " + str(sensor.type))
+
+
     print "------------------"
+    time.sleep(2)
 
 # test
 
