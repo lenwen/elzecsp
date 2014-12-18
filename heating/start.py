@@ -72,7 +72,7 @@ sensor_args = { 'dht11': Adafruit_DHT.DHT11,
 
 # endregion
 
-
+# test
 
 
 #settings = ClassSettings()
