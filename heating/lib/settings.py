@@ -8,7 +8,7 @@ class settings:
     PathCore = '/home/pi/elzecsp/'
     Pathicon = PathCore + 'icons'
     PathOneWireA = '/sys/bus/w1/devices/'
-    PathDb =  PathCore + 'ecs.db'
+
 
     #   OneWire GPO configuration
     oneWireCrcWaitingTime = 30
@@ -23,7 +23,15 @@ class settings:
 
     #   Debug settings
     BoxDebug = True
-    BoxDebugFile = 'debug.log'
+    BoxDebugFile = PathCore + 'debug.log'
+
+    #   Box restart values
+    boxDoRestart = False
+
+    #   Database Settings
+    PathDb =  PathCore + 'ecs.db'
+    dbVersionFromDatabase = 0
+
 
 
 
